@@ -4,10 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Memory Game</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .container {
+            width: 900px;
+            margin: 200px auto;
+            padding: 200px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: grey;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #numberDisplay {
+            font-size: 70px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #userInput {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <div id="numberBox">000</div>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="user_development.html">User Development</a></li>
+        <li style="float:right"><a href="about.html">About</a></li>
+    </ul>
+
+
+    <div class="container">
+        <div id="numberDisplay"></div>
         <input type="text" id="userInput" placeholder="Enter the number" disabled>
         <button onclick="checkNumber()">Check</button>
     </div>
@@ -17,13 +69,13 @@
         let timer;
 
         // Display initial number
-        document.getElementById('numberBox').textContent = numberToRemember;
+        document.getElementById('numberDisplay').textContent = numberToRemember;
 
         // Hide the number after 5 seconds
         timer = setTimeout(hideNumber, 5000);
 
         function hideNumber() {
-            document.getElementById('numberBox').textContent = '';
+            document.getElementById('numberDisplay').textContent = '';
             document.getElementById('userInput').disabled = false; // Enable input field after hiding the number
             document.getElementById('userInput').focus(); // Focus on the input field
         }
@@ -36,7 +88,7 @@
                 clearTimeout(timer);
                 numberLength++;
                 numberToRemember = generateRandomNumber(numberLength);
-                document.getElementById('numberBox').textContent = numberToRemember;
+                document.getElementById('numberDisplay').textContent = numberToRemember;
                 document.getElementById('userInput').value = '';
                 document.getElementById('userInput').disabled = true; // Disable input field
                 timer = setTimeout(hideNumber, 5000);
@@ -50,7 +102,7 @@
         function restartGame() {
             numberLength = 3;
             numberToRemember = generateRandomNumber(numberLength);
-            document.getElementById('numberBox').textContent = numberToRemember;
+            document.getElementById('numberDisplay').textContent = numberToRemember;
             document.getElementById('userInput').value = '';
             clearTimeout(timer);
             document.getElementById('userInput').disabled = true; // Disable input field

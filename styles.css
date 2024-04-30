@@ -1,5 +1,7 @@
 body {
   background-color: #333;
+  color: white; /* Sets the text color to white */
+  font-family: Arial, sans-serif; /* Improves text readability */
 }
 
 ul {
@@ -34,7 +36,7 @@ li a:hover:not(.active) {
   display: flex;
   justify-content: center;
   margin-bottom: 20px; /* Add some space between image containers */
-  margin-top: 220px; /* Add margin to push content down */
+  margin-top: 150px; /* Add margin to push content down */
 }
 
 .container {
@@ -81,7 +83,7 @@ li a:hover:not(.active) {
 #content {
   font-size: 20px;
   text-align: center;
-  color: white;
+
   margin-top: 20px;
 }
 
@@ -105,7 +107,7 @@ li a:hover:not(.active) {
 #clickable_box {
   width: 900px;
   height: 600px;
-  background-color: #454545;
+  background-color: grey;
   border: 4px solid #ccc;
   line-height: 200px;
   font-size: 24px;
@@ -114,18 +116,10 @@ li a:hover:not(.active) {
   display: inline-block;
   text-align: center;
   margin-top: 200px;
-  color: White;
 }
-
-
-
 
 #reaction_box.green {
   background-color: rgb(54, 192, 54);
-}
-
-#clickable_box:hover {
-  background-color: #424242;
 }
 
 /* Popup Styles */
@@ -149,6 +143,7 @@ li a:hover:not(.active) {
   padding: 20px;
   border-radius: 5px;
   text-align: center;
+  color:#111;
 }
 
 #popup-content img {
@@ -162,8 +157,21 @@ li a:hover:not(.active) {
   padding: 10px 20px;
   background-color: #ba0000;
   border: none;
-  color: white;
   cursor: pointer;
   border-radius: 5px;
   margin-top: 20px;
 }
+
+.main-content {
+  padding: 20px; /* Adds padding around the content */
+  border-radius: 8px; /* Rounds the corners of the main content area */
+  margin: 20px; /* Adds margin around the content area */
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  border-bottom: 2px solid #555; /* Adds a subtle line under the headings */
+  padding-bottom: 10px; /* Adds space below the headings */
+}
+
