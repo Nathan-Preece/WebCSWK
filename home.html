@@ -7,28 +7,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#news">User Development</a>
-          <i class="fa fa-bars"></i>
-        </a>
-    </div>
-
-    <div class="image-links">
-            <a href="ReactionTest.html"><img src="images/reaction_test.png"></a>
-            <div class="overlay">
-                <div class="overlay-text">Reaction Test</div>
-            </div>
-
-            <a href="ClickSpeedTest.html"><img src="images/click_speed_test.png"></a>
-            <div class="overlay">
-                <div class="overlay-text">Click Speed Test</div>
-            </div>
-
-            <a href="NumberMemoryTest.html"><img src="images/number_memory_test.png"></a>
-            <div class="overlay">
-                <div class="overlay-text">Number Memory Test</div>
-            </div>
+    <ul>
+        <li><a class="active" href="home.html">Home</a></li>
+        <li><a href="user_development.html">User Development</a></li>
+        <li style="float:right"><a href="about.html">About</a></li>
+    </ul>
+    
+    
+    <div class="image-container">
+        <div class="container">
+            <a href="number_memory_test.html">
+                <img src="images/number_memory_test.jpg" class="image">
+                <div class="overlay">
+                    <div class="text"><h4>Number Memory Test </h4>
+                        <p>This is to measure your memory on how many numbers in a row you can remember consecutively given a short period of time.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    
+        <div class="container">
+            <a href="click_speed_test.html">
+                <img src="images/click_speed_test.jpg" class="image">
+                <div class="overlay">
+                    <div class="text"><h4>Click Speed Test </h4>
+                        <p>This is to measure the number of clicks per second you can do. Complete the test online to see how fast you can click in seconds and what that compares to.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    
+        <div class="container">
+            <a href="reaction_test.html">
+                <img src="images/reaction_test.jpg" class="image">
+                <div class="overlay">
+                    <div class="text"><h4>Reaction Test </h4>
+                        <p>This is to measure your reactions on clicking a box when it highlights green to see how quick you can click on it (In Mili-seconds)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </body>
 </html>

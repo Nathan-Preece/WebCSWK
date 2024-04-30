@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Speed Test</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <!-- Navigation bar -->
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="user_development.html">User Development</a></li>
+        <li style="float:right"><a href="about.html">About</a></li>
+    </ul>
+
+    <!-- Clickable area -->
+    <div id="clickable_area">
+        <div id="clickable_box" onclick="handleClick()">
+            <h2>Click Speed Test</h2>
+            <p>Click as quickly as you can for the next 10 seconds to check your average clicks per second</p>
+        
+        </div>
+    </div>
+
+    <!-- Content displaying timer, clicks, CPS -->
+    <div id="content">
+        Timer: <span id="timer">0.000</span>  | Clicks: <span id="score">0</span> | CPS: <span id="clicks">0.00</span>
+    </div>
+
+    <!-- Exitable pop-up -->
+    <div id="popup" class="popup">
+        <div id="popup-content">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        var score = 0;
+        var duration = 10; 
+        var startTime;
+        var ended = true;
+
+        var timerTxt = document.getElementById("timer");
+        var scoreTxt = document.getElementById("score");
+        var clicksTxt = document.getElementById("clicks");
+        var clickableBox = document.getElementById("clickable_box");
+        var popup = document.getElementById("popup");
+
+        function startGame() {
+            ended = false;
+            score = 0;
+            scoreTxt.textContent = score;
+            startTime = new Date().getTime();
+
+            var timerId = setInterval(function() {
+                var total = (new Date().getTime() - startTime) / 1000;
+
+                if (total < duration) {
+                    timerTxt.textContent = total.toFixed(3);
+                    clicksTxt.textContent = (score / total).toFixed(2);
+                } else {
+                    ended = true;
+                    clearInterval(timerId);
+                    endGame();
+                }
+            });
+        }
+
+        function endGame() {
+            var clicksBySec = (score / duration).toFixed(2); // 2 d.p
+            timerTxt.textContent = duration.toFixed(3); // 3 d.p
+            clicksTxt.textContent = clicksBySec;
+
+            var animalMsg;
+            var animalImage;
+
+            if (clicksBySec < 4) {
+                animalImage = "images/sea_snail.jpg";
+                animalMsg = "You achieved " + clicksBySec + " clicks per second. You were as quick as a sea snail!";
+            } else if (clicksBySec < 10) {
+                animalImage = "images/clownfish.jpg";
+                animalMsg = "You achieved " + clicksBySec + " clicks per second. You were as quick as a clownfish!";
+            } else {
+                animalImage = "images/swordfish.jpg";
+                animalMsg = "You achieved " + clicksBySec + " clicks per second. You were as quick as a swordfish!";
+            }
+
+            // Show popup
+            popup.style.display = "block";
+
+            // Clear previous content
+            var popupContent = document.getElementById("popup-content");
+            popupContent.innerHTML = "";
+
+            // Add animal image to the popup
+            var animalImageElement = document.createElement("img");
+            animalImageElement.src = animalImage;
+            animalImageElement.alt = "Animal";
+            popupContent.appendChild(animalImageElement);
+
+            // Add animal message to the popup
+            var animalMsgElement = document.createElement("p");
+            animalMsgElement.textContent = animalMsg;
+            popupContent.appendChild(animalMsgElement);
+
+            // Add close button
+            var closeButton = document.createElement("button");
+            closeButton.textContent = "Close";
+            closeButton.onclick = closePopup;
+            popupContent.appendChild(closeButton);
+        }
+
+        function handleClick() {
+            if (ended) {
+                startGame();
+            } else {
+                score++;
+                scoreTxt.textContent = score;
+            }
+        }
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>

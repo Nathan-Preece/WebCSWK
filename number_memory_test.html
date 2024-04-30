@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Memory Game</title>
+</head>
+<body>
+    <div>
+        <div id="numberBox">000</div>
+        <input type="text" id="userInput" placeholder="Enter the number" disabled>
+        <button onclick="checkNumber()">Check</button>
+    </div>
+    <script>
+        let numberLength = 3;
+        let numberToRemember = generateRandomNumber(numberLength);
+        let timer;
+
+        // Display initial number
+        document.getElementById('numberBox').textContent = numberToRemember;
+
+        // Hide the number after 5 seconds
+        timer = setTimeout(hideNumber, 5000);
+
+        function hideNumber() {
+            document.getElementById('numberBox').textContent = '';
+            document.getElementById('userInput').disabled = false; // Enable input field after hiding the number
+            document.getElementById('userInput').focus(); // Focus on the input field
+        }
+
+        function checkNumber() {
+            const userInput = document.getElementById('userInput').value;
+
+            if (userInput === numberToRemember.toString()) {
+                // If user input matches the number, increment number length and continue
+                clearTimeout(timer);
+                numberLength++;
+                numberToRemember = generateRandomNumber(numberLength);
+                document.getElementById('numberBox').textContent = numberToRemember;
+                document.getElementById('userInput').value = '';
+                document.getElementById('userInput').disabled = true; // Disable input field
+                timer = setTimeout(hideNumber, 5000);
+            } else {
+                // If user input is wrong, restart the game
+                alert("Incorrect! Restarting the game.");
+                restartGame();
+            }
+        }
+
+        function restartGame() {
+            numberLength = 3;
+            numberToRemember = generateRandomNumber(numberLength);
+            document.getElementById('numberBox').textContent = numberToRemember;
+            document.getElementById('userInput').value = '';
+            clearTimeout(timer);
+            document.getElementById('userInput').disabled = true; // Disable input field
+            timer = setTimeout(hideNumber, 5000);
+        }
+
+        function generateRandomNumber(length) {
+            // Generate a random number with the specified length
+            let min = Math.pow(10, length - 1);
+            let max = Math.pow(10, length) - 1;
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>
