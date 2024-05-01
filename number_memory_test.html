@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,24 +13,6 @@
             border: 2px solid #ccc;
             border-radius: 10px;
             background-color: grey;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #numberDisplay {
-            font-size: 70px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #userInput {
-            width: calc(100% - 40px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
         }
 
         button {
@@ -44,11 +25,8 @@
             font-size: 16px;
             cursor: pointer;
         }
-
-        button:hover {
-            background-color: #0056b3;
-        }
     </style>
+
 </head>
 <body>
     <ul>
@@ -57,16 +35,23 @@
         <li style="float:right"><a href="about.html">About</a></li>
     </ul>
 
-
     <div class="container">
         <div id="numberDisplay"></div>
         <input type="text" id="userInput" placeholder="Enter the number" disabled>
         <button onclick="checkNumber()">Check</button>
     </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div id="popup-content" class="popup-content">
+        </div>
+    </div>
+
     <script>
         let numberLength = 3;
         let numberToRemember = generateRandomNumber(numberLength);
         let timer;
+        let correctCount = 0;
 
         // Display initial number
         document.getElementById('numberDisplay').textContent = numberToRemember;
@@ -81,25 +66,26 @@
         }
 
         function checkNumber() {
-            const userInput = document.getElementById('userInput').value;
+    const userInput = document.getElementById('userInput').value;
 
-            if (userInput === numberToRemember.toString()) {
-                // If user input matches the number, increment number length and continue
-                clearTimeout(timer);
-                numberLength++;
-                numberToRemember = generateRandomNumber(numberLength);
-                document.getElementById('numberDisplay').textContent = numberToRemember;
-                document.getElementById('userInput').value = '';
-                document.getElementById('userInput').disabled = true; // Disable input field
-                timer = setTimeout(hideNumber, 5000);
-            } else {
-                // If user input is wrong, restart the game
-                alert("Incorrect! Restarting the game.");
-                restartGame();
-            }
-        }
+    if (userInput === numberToRemember.toString()) {
+        clearTimeout(timer);
+        correctCount++;
+        numberLength++;
+        numberToRemember = generateRandomNumber(numberLength);
+        document.getElementById('numberDisplay').textContent = numberToRemember;
+        document.getElementById('userInput').value = '';
+        document.getElementById('userInput').disabled = true; // Disable input field
+        timer = setTimeout(hideNumber, 5000);
+    } else {
+        // If user input is wrong, show the popup and restart the game
+        showPopup("Incorrect number! You achieved " + (correctCount + 2) + " digits correct.");
+        restartGame();
+    }
+}
 
         function restartGame() {
+            correctCount = 0;
             numberLength = 3;
             numberToRemember = generateRandomNumber(numberLength);
             document.getElementById('numberDisplay').textContent = numberToRemember;
@@ -114,6 +100,35 @@
             let min = Math.pow(10, length - 1);
             let max = Math.pow(10, length) - 1;
             return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function showPopup(message) {
+    // Show the popup with the given message
+    var popup = document.getElementById("popup");
+    var popupContent = document.getElementById("popup-content");
+
+    var animalImage;
+    var animalMsg;
+
+    if (correctCount > 6) {
+        animalImage = "images/swordfish.jpg";
+        animalMsg = message + " You were as quick as a swordfish!";
+    } else if (correctCount > 4) {
+        animalImage = "images/clownfish.jpg";
+        animalMsg = message + " You were as quick as a clownfish!";
+    } else {
+        animalImage = "images/sea_snail.jpg";
+        animalMsg = message + " You were as quick as a sea snail!";
+    }
+
+    popupContent.innerHTML = "<img src='" + animalImage + "' alt='Animal'><p>" + animalMsg + "</p><button onclick='closePopup()'>Close</button>";
+    popup.style.display = "block";
+}
+
+        function closePopup() {
+            // Close the popup
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
         }
     </script>
 </body>
