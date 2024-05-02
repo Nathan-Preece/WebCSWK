@@ -1,7 +1,7 @@
 body {
   background-color: #333;
-  color: white; /* Sets the text color to white */
-  font-family: Arial, sans-serif; /* Improves text readability */
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 ul {
@@ -35,20 +35,20 @@ li a:hover:not(.active) {
 .image-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* Add some space between image containers */
-  margin-top: 150px; /* Add margin to push content down */
+  margin-bottom: 20px;
+  margin-top: 150px;
 }
 
 .container {
   position: relative;
-  margin: 20px; /* Added margin to create gap between images */
-  border: 4px solid black; /* Added black border around each image */
+  margin: 20px; 
+  border: 4px solid black;
 }
 
 .image {
   display: block;
-  width: 400px; /* Set image width to 300 pixels */
-  height: 400px; /* Set image height to 300 pixels */
+  width: 400px; 
+  height: 400px;
 }
 
 .overlay {
@@ -96,12 +96,10 @@ li a:hover:not(.active) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333; /* Set background color */
-  margin: 0; /* Reset margin */
-  padding: 0; /* Reset padding */
+  background-color: #333;
+  margin: 0;
+  padding: 0; 
 }
-
-/* Styles for the box */
 
 #reaction_box,
 #clickable_box {
@@ -122,7 +120,6 @@ li a:hover:not(.active) {
   background-color: rgb(54, 192, 54);
 }
 
-/* Popup Styles */
 .popup {
   display: none;
   position: fixed;
@@ -163,16 +160,16 @@ li a:hover:not(.active) {
 }
 
 .main-content {
-  padding: 20px; /* Adds padding around the content */
-  border-radius: 8px; /* Rounds the corners of the main content area */
-  margin: 20px; /* Adds margin around the content area */
+  padding: 20px;
+  border-radius: 8px; 
+  margin: 20px;
   text-align: center;
 }
 
 h1 {
   text-align: center;
-  border-bottom: 2px solid #555; /* Adds a subtle line under the headings */
-  padding-bottom: 10px; /* Adds space below the headings */
+  border-bottom: 2px solid #555;
+  padding-bottom: 10px;
 }
 
 #numberDisplay {
